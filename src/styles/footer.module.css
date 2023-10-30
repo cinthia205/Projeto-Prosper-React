@@ -1,0 +1,56 @@
+/* styles/Footer.module.css (pode usar módulos CSS para melhor encapsulamento) */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .footer-columns {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .footer-column {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .footer-column h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-column img {
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin: 5px 0;
+  }
+  
+  .footer-links a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  /* Estilize os links das redes sociais com ícones, se necessário */
+  .footer-links .social-icons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .social-icons a {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #fff;
+  }
+  
+  /* Adicione qualquer estilo adicional que você desejar */
+  

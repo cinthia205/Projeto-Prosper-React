@@ -1,6 +1,19 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { Product } from "@/models/products";
+
+interface Product { 
+  id: number
+  title: string
+  description: string
+  price: number
+  discountPercentage: number
+  rating: number 
+  stock: number
+  brand: string
+  category: string
+  thumbnail: string
+  images: string[] 
+}
 
 export default function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
