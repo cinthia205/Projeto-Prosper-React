@@ -19,7 +19,7 @@ export default function ProductList() {
 const [products, setProducts] = useState<Product[]>([])
 
   const getProducts = () => {
-    fetch('https://dummyjson.com/products?limit=8')
+    fetch('https://dummyjson.com/products?limit=8&skip=10')
     .then(res => res.json())
     .then(data => setProducts(data.products))
   }
