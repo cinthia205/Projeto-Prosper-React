@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import exampleImage from '@/images/MakeupBrushes.jpg'
+import ProductList from '@/components/ProductList'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +21,7 @@ export default function Home() {
       <h1>Le Parfum's</h1>
       <h2>Os melhores cosméticos você encontra aqui!</h2>
       <Image src={exampleImage} alt="Makeup brushes"/>
-      
+      <ProductList />
       </main>
     </>
   )
