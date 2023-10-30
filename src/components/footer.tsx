@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '@/styles/footer.module.css';
-import logo from '@/images/logo.png'
 import Image from 'next/image'
 
 const Footer: React.FC = () => {
@@ -8,7 +7,7 @@ const Footer: React.FC = () => {
     <footer>
       <div className="footer-columns">
         <div className="footer-column">
-        
+        <Image src='/logo.png' alt="Makeup brushes" width="150" height='150'/>
         </div>
         <div className="footer-column">
           <p>Os melhores cosméticos você encontra aqui!</p>
