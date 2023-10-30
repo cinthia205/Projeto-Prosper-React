@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     <footer>
       <div className="footer-columns">
         <div className="footer-column">
-        <Image src='/logo.png' alt="Makeup brushes" width="150" height='150'/>
+        <Image src='/logo.png' alt="Logo" width="150" height='150'/>
         </div>
         <div className="footer-column">
           <p>Os melhores cosméticos você encontra aqui!</p>
