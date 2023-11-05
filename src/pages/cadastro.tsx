@@ -35,6 +35,7 @@ const UserRegistrationForm = () => {
   console.log({ errors });
 
   return (
+    <main>
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Cadastro</h1>
       <div>
@@ -162,6 +163,7 @@ const UserRegistrationForm = () => {
         </p>
       </div>
     </form>
+    </main>
   );
 };
 

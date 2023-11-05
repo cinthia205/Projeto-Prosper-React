@@ -1,3 +1,25 @@
-.product-list {
-    margin-top: 10px;
+.productList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 30px;
+    background: white;
+    border: 1px solid #e7e7e7;
+}
+
+.productCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.productCard img {
+    width: 100px;
+    aspect-ratio: 1;
+    object-fit: cover;
 }

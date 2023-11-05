@@ -23,7 +23,9 @@ const LoginForm = () => {
   console.log({ errors });
 
   return (
+    <main>
     <form onSubmit={handleSubmit(onSubmit)}>
+    <h1>Login</h1>
       <div>
       <label>E-mail: </label>
         <input
@@ -48,6 +50,7 @@ const LoginForm = () => {
           </p>
           </div>
     </form>
+    </main>
   );
 };
 
