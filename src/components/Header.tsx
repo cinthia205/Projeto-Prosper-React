@@ -1,9 +1,12 @@
+import Image from 'next/image'
+import Logo from 'public/images/logoHeader.svg'
+
 export default function Header() {
 
     return (
         <header>
              <div className="header-title">
-            <h1>Le Parfum's</h1>
+             <Image src={Logo} alt="Logo" width="500" height="200"/>
             <h3>Os melhores cosméticos você encontra aqui!</h3>
              </div>
         </header>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image'
-import Logo from 'public/images/logo.png'
+import Logo from 'public/images/logo.svg'
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
     <footer>
       <div className="footer-columns">
         <div className="footer-column">
-        <Image src={Logo} alt="Logo" width="100" height="100"/>
+        <Image src={Logo} alt="Logo" width="150" height="150"/>
         <p style={{textAlign: 'center'}}>Os melhores cosméticos você encontra aqui!</p>
         </div>
         <div className="footer-column">

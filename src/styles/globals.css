@@ -74,9 +74,7 @@ nav {
 
 nav img {
   max-height: 100%;
-  border: 2px solid white;
-  border-radius: 50%;
-  margin: 10px;
+  margin: 5px;
 }
 
 nav ul {

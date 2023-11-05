@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image'
-import Logo from 'public/images/logo.png'
+import Logo from 'public/images/logoNav.svg'
 import { FiUser, FiShoppingCart } from 'react-icons/fi'
 
 export default function Navbar() {
   return (
     <nav>
-      <Image src={Logo} alt="Logo" width="50" height="128"/>
+      <Image src={Logo} alt="Logo" width="200" height="128"/>
       <ul>
         <li>
           <Link href="/">Página Inicial</Link>
