@@ -77,6 +77,24 @@ nav img {
   margin: 5px;
 }
 
+.navbar-right {
+  display: flex;
+}
+
+.icons-navbar {
+  margin: 10px;
+}
+
+.profile-icon {
+  border-radius: 50%;
+  border: 2px solid white;
+  padding: 5px;
+}
+
+.cart-icon {
+  margin-top: 17px;
+}
+
 nav ul {
   display: flex;
   flex-grow: 1;
