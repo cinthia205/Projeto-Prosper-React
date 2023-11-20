@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 
 type CartProps = {
@@ -22,8 +21,6 @@ const Cart: React.FC<CartProps> = ({ items }) => {
         setCartItems(items);
       }
     }, [items]);
-
-    const router = useRouter();
   
     const removeItem = (id: number) => {
       const updatedItems = cartItems.filter((item) => item.id !== id);
@@ -72,7 +69,7 @@ const Cart: React.FC<CartProps> = ({ items }) => {
           </ul>
         )}
         <p>Preço Total: R$ {getTotalPrice().toFixed(2).replace('.', ',')}</p>
-        <Link href="/checkout">
+        <Link href={{ pathname: '/checkout', query: { cartItems: JSON.stringify(cartItems) } }}>
         <button disabled={cartItems.length === 0}>Ir para Checkout</button>
       </Link>
       </div>

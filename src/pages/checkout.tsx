@@ -2,16 +2,39 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 type CheckoutProps = {
-  cartItems: CartItemType[];
+  cartItems?: CartItemType[];
 };
 
-const Checkout: React.FC<CheckoutProps> = ({ cartItems }) => {
-  const [coupon, setCoupon] = useState('');
+const Checkout: React.FC<CheckoutProps> = () => {
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [subtotal, setSubtotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState('');
+  const [coupon, setCoupon] = useState('');
   const router = useRouter();
+
+  useEffect(() => {
+    const { query } = router;
+    if (query) {
+      const { items, subtotal, discount, total, paymentMethod } = query;
+      if (items) {
+        setCartItems(JSON.parse(items as string));
+      }
+      if (subtotal) {
+        setSubtotal(parseFloat(subtotal as string));
+      }
+      if (discount) {
+        setDiscount(parseFloat(discount as string));
+      }
+      if (total) {
+        setTotal(parseFloat(total as string));
+      }
+      if (paymentMethod) {
+        setPaymentMethod(paymentMethod as string);
+      }
+    }
+  }, [router]);
 
   useEffect(() => {
     if (cartItems && cartItems.length > 0) {
@@ -28,7 +51,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems }) => {
       setDiscount(calculatedSubtotal * calculatedDiscount);
 
       // Calculate total using a simpler expression
-      const calculatedTotal = (1 - calculatedDiscount) * calculatedSubtotal;
+      const calculatedTotal = calculatedSubtotal - calculatedSubtotal * calculatedDiscount;
       setTotal(calculatedTotal);
     }
   }, [cartItems, coupon]);
@@ -39,18 +62,18 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems }) => {
 
   const handleCheckout = () => {
     if (paymentMethod !== '') {
-        router.push({
-            pathname: '/confirmation',
-            query: {
-              items: JSON.stringify(cartItems),
-              subtotal,
-              discount,
-              total,
-              paymentMethod,
-            },
-          });
+      router.push({
+        pathname: '/confirmation',
+        query: {
+          items: JSON.stringify(cartItems),
+          subtotal: subtotal.toString(), // Convert to string before sending in query params
+          discount: discount.toString(),
+          total: total.toString(),
+          paymentMethod,
+        },
+      });
     } else {
-      console.log('Choose a payment method before finalizing the purchase.');
+      console.log('Escolha um método de pagamento antes de finalizar a compra.');
     }
   };
 
@@ -72,7 +95,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems }) => {
         <h3>Escolha o método de pagamento:</h3>
         <button onClick={() => handlePaymentMethod('Cartão')}>Cartão de Crédito</button>
         <button onClick={() => handlePaymentMethod('Boleto')}>Boleto Bancário</button>
-        {/* Add more payment methods as necessary */}
+        {/* Adicione mais métodos de pagamento conforme necessário */}
       </div>
 
       <button onClick={handleCheckout} disabled={!paymentMethod}>
