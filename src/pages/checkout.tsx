@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 type CheckoutProps = {
   cartItems: CartItemType[];
@@ -10,6 +11,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems }) => {
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     if (cartItems && cartItems.length > 0) {
@@ -37,8 +39,16 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems }) => {
 
   const handleCheckout = () => {
     if (paymentMethod !== '') {
-      console.log('Purchase completed successfully!');
-      // Proceed with checkout logic
+        router.push({
+            pathname: '/confirmation',
+            query: {
+              items: JSON.stringify(cartItems),
+              subtotal,
+              discount,
+              total,
+              paymentMethod,
+            },
+          });
     } else {
       console.log('Choose a payment method before finalizing the purchase.');
     }
