@@ -1,12 +1,14 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 
 type CartProps = {
-  items: CartItemType[];
+  items: CartItem[];
   addToCart: (product: Product) => void;
 };
 
 const Cart: React.FC<CartProps> = ({ items }) => {
-    const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
   
     useEffect(() => {
       const storedCartItems = localStorage.getItem('cartItems');
@@ -20,6 +22,8 @@ const Cart: React.FC<CartProps> = ({ items }) => {
         setCartItems(items);
       }
     }, [items]);
+
+    const router = useRouter();
   
     const removeItem = (id: number) => {
       const updatedItems = cartItems.filter((item) => item.id !== id);
@@ -68,6 +72,9 @@ const Cart: React.FC<CartProps> = ({ items }) => {
           </ul>
         )}
         <p>Preço Total: R$ {getTotalPrice().toFixed(2).replace('.', ',')}</p>
+        <Link href="/checkout">
+        <button disabled={cartItems.length === 0}>Ir para Checkout</button>
+      </Link>
       </div>
     );
   };
