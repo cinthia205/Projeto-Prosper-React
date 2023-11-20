@@ -1,40 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useCart } from '@/context/CartContext';
 
-type CheckoutProps = {
-  cartItems?: CartItemType[];
-};
-
-const Checkout: React.FC<CheckoutProps> = () => {
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+const Checkout: React.FC = () => {
+  const { cartItems } = useCart();
   const [subtotal, setSubtotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState('');
   const [coupon, setCoupon] = useState('');
   const router = useRouter();
-
-  useEffect(() => {
-    const { query } = router;
-    if (query) {
-      const { items, subtotal, discount, total, paymentMethod } = query;
-      if (items) {
-        setCartItems(JSON.parse(items as string));
-      }
-      if (subtotal) {
-        setSubtotal(parseFloat(subtotal as string));
-      }
-      if (discount) {
-        setDiscount(parseFloat(discount as string));
-      }
-      if (total) {
-        setTotal(parseFloat(total as string));
-      }
-      if (paymentMethod) {
-        setPaymentMethod(paymentMethod as string);
-      }
-    }
-  }, [router]);
 
   useEffect(() => {
     if (cartItems && cartItems.length > 0) {

@@ -1,13 +1,9 @@
+import { useCart } from '@/context/CartContext';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-
-type CartProps = {
-  items: CartItem[];
-  addToCart: (product: Product) => void;
-};
+import React, { useEffect } from 'react';
 
 const Cart: React.FC<CartProps> = ({ items }) => {
-    const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { cartItems, setCartItems } = useCart();
   
     useEffect(() => {
       const storedCartItems = localStorage.getItem('cartItems');

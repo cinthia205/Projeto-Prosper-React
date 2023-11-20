@@ -17,3 +17,8 @@ interface CartItem extends Product {
 }
 
 type CartItemType = CartItem;
+
+type CartProps = {
+    items: CartItem[];
+    addToCart: (product: Product) => void;
+  };
