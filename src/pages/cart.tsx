@@ -4,6 +4,11 @@ import React, { useEffect } from 'react';
 
 const Cart: React.FC<CartProps> = ({ items }) => {
   const { cartItems, setCartItems } = useCart();
+
+  const dispatchCartUpdateEvent = () => {
+    const event = new Event('cartUpdated');
+    window.dispatchEvent(event); // Dispatch the custom event
+  };
   
     useEffect(() => {
       const storedCartItems = localStorage.getItem('cartItems');
@@ -17,27 +22,30 @@ const Cart: React.FC<CartProps> = ({ items }) => {
         setCartItems(items);
       }
     }, [items]);
+
+    const updateCartAndDispatchEvent = (updatedItems: any[]) => {
+      setCartItems(updatedItems);
+      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+      dispatchCartUpdateEvent(); // Dispatch the custom event
+    };
   
     const removeItem = (id: number) => {
       const updatedItems = cartItems.filter((item) => item.id !== id);
-      setCartItems(updatedItems);
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+      updateCartAndDispatchEvent(updatedItems);
     };
   
     const increaseQuantity = (id: number) => {
       const updatedItems = cartItems.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       );
-      setCartItems(updatedItems);
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+      updateCartAndDispatchEvent(updatedItems);
     };
   
     const decreaseQuantity = (id: number) => {
       const updatedItems = cartItems.map((item) =>
         item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
       );
-      setCartItems(updatedItems);
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+      updateCartAndDispatchEvent(updatedItems);
     };
   
     const getTotalPrice = () => {

@@ -36,6 +36,7 @@ export default function ProductList() {
 
         if (typeof window !== 'undefined') {
           localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+          window.dispatchEvent(new Event('cartUpdated'));
         }
       } else {
         const newCartItem = { ...productToAdd, quantity: 1 };
@@ -44,6 +45,7 @@ export default function ProductList() {
 
         if (typeof window !== 'undefined') {
           localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+          window.dispatchEvent(new Event('cartUpdated'));
         }
       }
     }
